@@ -155,6 +155,8 @@ target_sources(${PROJECT_NAME} PRIVATE
   gui/widgets/AetherWavetableVisualizer3D.h
   gui/widgets/AetherMSEGEditor2D.cpp
   gui/widgets/AetherMSEGEditor2D.h
+  gui/widgets/AetherVirtualMousePad.cpp
+  gui/widgets/AetherVirtualMousePad.h
   gui/widgets/AetherPresetCloudBrowser.cpp
   gui/widgets/AetherPresetCloudBrowser.h
   gui/widgets/EffectChooser.cpp
