@@ -198,10 +198,16 @@ add_library(${PROJECT_NAME}
   dsp/effects/Reverb1Effect.h
   dsp/effects/Reverb2Effect.cpp
   dsp/effects/Reverb2Effect.h
+  dsp/effects/OTTDynamicsEffect.cpp
+  dsp/effects/OTTDynamicsEffect.h
   dsp/effects/ShimmerEffect.cpp
   dsp/effects/ShimmerEffect.h
+  dsp/filters/ZDFFilterSuite.cpp
+  dsp/filters/ZDFFilterSuite.h
   dsp/oscillators/GranularOscillator.cpp
   dsp/oscillators/GranularOscillator.h
+  dsp/oscillators/SpectralResynthesizer.cpp
+  dsp/oscillators/SpectralResynthesizer.h
   dsp/utilities/AudioToSynthMatcher.cpp
   dsp/utilities/AudioToSynthMatcher.h
   dsp/effects/RingModulatorEffect.cpp
