@@ -173,8 +173,29 @@
                     </div>
                 </div>
 
-                <div class="synth-visualizer-container">
-                    <canvas id="synth-scope-canvas"></canvas>
+                <div class="synth-middle-layout">
+                    <div class="synth-visualizer-container">
+                        <canvas id="synth-scope-canvas"></canvas>
+                    </div>
+
+                    <!-- Korg-Style Vector Joystick Pad -->
+                    <div class="korg-joystick-card">
+                        <div class="joystick-title">KORG VECTOR JOYSTICK</div>
+                        <div class="joystick-pad" id="joystick-pad">
+                            <div class="joystick-axis axis-x"></div>
+                            <div class="joystick-axis axis-y"></div>
+                            <div class="joystick-label label-top">+MOD / CUTOFF</div>
+                            <div class="joystick-label label-left">-PITCH</div>
+                            <div class="joystick-label label-right">+PITCH</div>
+                            <div class="joystick-label label-bottom">-MOD</div>
+                            <div class="joystick-handle" id="joystick-handle">
+                                <div class="handle-inner"></div>
+                            </div>
+                        </div>
+                        <div class="joystick-readout">
+                            <span id="joy-pitch-readout">Pitch: 0.0</span> | <span id="joy-mod-readout">Mod: 50%</span>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="piano-keyboard" id="piano-keyboard">

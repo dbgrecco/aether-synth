@@ -1,15 +1,16 @@
 /*
  * Aether Synth Official Web Application Script
- * Real-time 3D Wavetable Canvas, QWERTY Musical Keyboard & Mouse XY Mod/Pitch Pad
+ * Real-time 3D Wavetable Canvas, QWERTY Musical Keyboard & Korg Vector Joystick Controller
  */
 
 document.addEventListener('DOMContentLoaded', () => {
     init3DHeroVisualizer();
     initWebAudioSynth();
+    initKorgJoystick();
 });
 
 /* ==========================================
-   1. Real-Time 3D Wavetable & Mouse XY Mod Pad
+   1. Real-Time 3D Wavetable Hero Visualizer
    ========================================== */
 let globalMousePitchBend = 1.0; // Pitch Bend multiplier
 let globalMouseModWheel = 0.5;   // Mod Wheel (0.0 to 1.0)
@@ -34,33 +35,6 @@ function init3DHeroVisualizer() {
 
     window.addEventListener('resize', resize);
     resize();
-
-    // Mouse XY Pad Modulation Listener
-    canvas.addEventListener('mousemove', (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        const mouseY = e.clientY - rect.top;
-
-        // X Axis: Pitch Bend (0.5x to 2.0x pitch shift)
-        const normX = (mouseX / rect.width);
-        globalMousePitchBend = Math.pow(2.0, (normX - 0.5) * 2.0); // +/- 12 semitones
-
-        // Y Axis: Mod Wheel / Filter Cutoff (0.0 to 1.0)
-        const normY = 1.0 - (mouseY / rect.height);
-        globalMouseModWheel = Math.max(0.01, Math.min(1.0, normY));
-
-        // Update cutoff slider dynamically if Web Audio Filter exists
-        const cutoffSlider = document.getElementById('cutoff-slider');
-        if (cutoffSlider) {
-            const newCutoff = 100 + globalMouseModWheel * 7900;
-            cutoffSlider.value = newCutoff;
-            cutoffSlider.dispatchEvent(new Event('input'));
-        }
-    });
-
-    canvas.addEventListener('mouseleave', () => {
-        globalMousePitchBend = 1.0; // Reset pitch bend on leave
-    });
 
     let time = 0;
 
@@ -97,7 +71,6 @@ function init3DHeroVisualizer() {
                 const xNorm = (i / (numSamples - 1)) - 0.5;
                 const phase = (i / numSamples) * Math.PI * 2;
                 
-                // Modulated wave distortion using Mouse XY ModWheel
                 let yNorm = Math.sin(phase * frameHarmonic * globalMousePitchBend + time * 2) * (1 / (1 + f * 0.15))
                            + Math.sin(phase * 3 * globalMouseModWheel - time) * 0.25;
 
@@ -139,7 +112,118 @@ function init3DHeroVisualizer() {
 }
 
 /* ==========================================
-   2. Interactive Web Audio & QWERTY Keyboard
+   2. Korg Vector Joystick Controller
+   ========================================== */
+function initKorgJoystick() {
+    const pad = document.getElementById('joystick-pad');
+    const handle = document.getElementById('joystick-handle');
+    const pitchReadout = document.getElementById('joy-pitch-readout');
+    const modReadout = document.getElementById('joy-mod-readout');
+
+    if (!pad || !handle) return;
+
+    let isDragging = false;
+    let currentX = 0; // -1 to +1 (Pitch Bend)
+    let currentY = 0; // -1 to +1 (Mod Wheel / Cutoff)
+
+    function updateJoystickPosition(clientX, clientY) {
+        const rect = pad.getBoundingClientRect();
+        const radius = rect.width / 2;
+        const centerX = rect.left + radius;
+        const centerY = rect.top + radius;
+
+        let deltaX = clientX - centerX;
+        let deltaY = clientY - centerY;
+
+        // Limit to circle radius
+        const dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+        if (dist > radius - 10) {
+            deltaX = (deltaX / dist) * (radius - 10);
+            deltaY = (deltaY / dist) * (radius - 10);
+        }
+
+        currentX = deltaX / (radius - 10); // -1.0 to +1.0
+        currentY = -deltaY / (radius - 10); // -1.0 to +1.0 (inverted for screen Y)
+
+        // Move handle
+        handle.style.transform = `translate(${deltaX}px, ${deltaY}px)`;
+
+        // Calculate Pitch Bend (-12 to +12 semitones)
+        const semitones = (currentX * 12.0).toFixed(1);
+        globalMousePitchBend = Math.pow(2.0, currentX);
+
+        // Calculate Mod Wheel (0% to 100%)
+        const modPercent = Math.round(((currentY + 1.0) / 2.0) * 100);
+        globalMouseModWheel = (currentY + 1.0) / 2.0;
+
+        // Update readouts
+        if (pitchReadout) pitchReadout.textContent = `Pitch: ${semitones > 0 ? '+' : ''}${semitones}st`;
+        if (modReadout) modReadout.textContent = `Mod: ${modPercent}%`;
+
+        // Update filter cutoff slider dynamically
+        const cutoffSlider = document.getElementById('cutoff-slider');
+        if (cutoffSlider) {
+            const newCutoff = 100 + globalMouseModWheel * 7900;
+            cutoffSlider.value = newCutoff;
+            cutoffSlider.dispatchEvent(new Event('input'));
+        }
+    }
+
+    function resetJoystickSpring() {
+        // X-axis springs back to center (0.0 pitch bend), Y-axis stays where set
+        currentX = 0;
+        const rect = pad.getBoundingClientRect();
+        const radius = rect.width / 2;
+        const deltaY = -currentY * (radius - 10);
+
+        handle.style.transform = `translate(0px, ${deltaY}px)`;
+        globalMousePitchBend = 1.0;
+
+        if (pitchReadout) pitchReadout.textContent = `Pitch: 0.0st`;
+    }
+
+    pad.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        updateJoystickPosition(e.clientX, e.clientY);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            updateJoystickPosition(e.clientX, e.clientY);
+        }
+    });
+
+    window.addEventListener('mouseup', () => {
+        if (isDragging) {
+            isDragging = false;
+            resetJoystickSpring();
+        }
+    });
+
+    // Touch support for mobile/tablets
+    pad.addEventListener('touchstart', (e) => {
+        if (e.touches.length > 0) {
+            isDragging = true;
+            updateJoystickPosition(e.touches[0].clientX, e.touches[0].clientY);
+        }
+    });
+
+    window.addEventListener('touchmove', (e) => {
+        if (isDragging && e.touches.length > 0) {
+            updateJoystickPosition(e.touches[0].clientX, e.touches[0].clientY);
+        }
+    });
+
+    window.addEventListener('touchend', () => {
+        if (isDragging) {
+            isDragging = false;
+            resetJoystickSpring();
+        }
+    });
+}
+
+/* ==========================================
+   3. Interactive Web Audio & QWERTY Keyboard
    ========================================== */
 function initWebAudioSynth() {
     let audioCtx = null;
@@ -152,8 +236,7 @@ function initWebAudioSynth() {
     const keys = document.querySelectorAll('.piano-keyboard .key');
     const scopeCanvas = document.getElementById('synth-scope-canvas');
 
-    // QWERTY Key Map to Frequencies (Base Octave 4)
-    let octaveShift = 0; // Z / X to shift octaves
+    let octaveShift = 0;
     const qwertyNoteMap = {
         'a': 261.63, // C4
         'w': 277.18, // C#4
@@ -208,7 +291,6 @@ function initWebAudioSynth() {
         const preset = presetSelect ? presetSelect.value : 'cyberpunk';
         const now = audioCtx.currentTime;
 
-        // If key already playing, don't duplicate
         if (keyChar && activeOscillators[keyChar]) return;
 
         const osc1 = audioCtx.createOscillator();
@@ -284,7 +366,6 @@ function initWebAudioSynth() {
         }
     }
 
-    // Attach QWERTY Physical Keyboard Listeners
     window.addEventListener('keydown', (e) => {
         if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
 
@@ -309,7 +390,6 @@ function initWebAudioSynth() {
         }
     });
 
-    // Helper to highlight corresponding UI key
     function highlightPianoKey(freq, isActive) {
         keys.forEach((key) => {
             if (Math.abs(parseFloat(key.getAttribute('data-note')) - freq) < 1.0) {
@@ -319,7 +399,6 @@ function initWebAudioSynth() {
         });
     }
 
-    // Mouse / Touch Piano Keys
     keys.forEach((key) => {
         const freq = parseFloat(key.getAttribute('data-note'));
 

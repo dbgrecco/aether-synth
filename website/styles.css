@@ -446,14 +446,115 @@ body {
     cursor: pointer;
 }
 
+.synth-middle-layout {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 28px;
+    align-items: stretch;
+}
+
 .synth-visualizer-container {
-    width: 100%;
-    height: 160px;
+    flex: 1;
+    height: 200px;
     background: rgba(10, 13, 20, 0.9);
     border-radius: var(--radius-sm);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    margin-bottom: 28px;
     overflow: hidden;
+}
+
+/* Korg-Style Vector Joystick */
+.korg-joystick-card {
+    width: 210px;
+    background: rgba(12, 16, 26, 0.95);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.1);
+}
+
+.joystick-title {
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--primary-cyan);
+    letter-spacing: 1px;
+}
+
+.joystick-pad {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    background: radial-gradient(circle, rgba(20, 28, 45, 0.9) 0%, rgba(9, 11, 18, 0.95) 100%);
+    border: 2px solid var(--border-glow);
+    border-radius: 50%;
+    cursor: crosshair;
+    user-select: none;
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.8), 0 0 15px rgba(0, 229, 255, 0.2);
+}
+
+.joystick-axis {
+    position: absolute;
+    background: rgba(0, 229, 255, 0.2);
+}
+.joystick-axis.axis-x {
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    height: 1px;
+}
+.joystick-axis.axis-y {
+    left: 50%;
+    top: 10px;
+    bottom: 10px;
+    width: 1px;
+}
+
+.joystick-label {
+    position: absolute;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    font-family: var(--font-heading);
+}
+.label-top { top: 4px; left: 50%; transform: translateX(-50%); }
+.label-bottom { bottom: 4px; left: 50%; transform: translateX(-50%); }
+.label-left { left: 4px; top: 50%; transform: translateY(-50%); }
+.label-right { right: 4px; top: 50%; transform: translateY(-50%); }
+
+.joystick-handle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    margin-left: -16px;
+    margin-top: -16px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #00E5FF 0%, #7C4DFF 100%);
+    box-shadow: 0 0 15px #00E5FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.05s ease-out;
+    pointer-events: none;
+}
+
+.handle-inner {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #FFF;
+    box-shadow: 0 0 5px #FFF;
+}
+
+.joystick-readout {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-family: monospace;
 }
 
 #synth-scope-canvas {
