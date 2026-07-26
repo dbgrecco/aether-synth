@@ -198,6 +198,12 @@ add_library(${PROJECT_NAME}
   dsp/effects/Reverb1Effect.h
   dsp/effects/Reverb2Effect.cpp
   dsp/effects/Reverb2Effect.h
+  dsp/effects/ShimmerEffect.cpp
+  dsp/effects/ShimmerEffect.h
+  dsp/oscillators/GranularOscillator.cpp
+  dsp/oscillators/GranularOscillator.h
+  dsp/utilities/AudioToSynthMatcher.cpp
+  dsp/utilities/AudioToSynthMatcher.h
   dsp/effects/RingModulatorEffect.cpp
   dsp/effects/RingModulatorEffect.h
   dsp/effects/RotarySpeakerEffect.cpp

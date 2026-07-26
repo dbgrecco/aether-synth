@@ -151,6 +151,10 @@ target_sources(${PROJECT_NAME} PRIVATE
   gui/overlays/WaveShaperAnalysis.cpp
   gui/overlays/WaveShaperAnalysis.h
   gui/overlays/OpenSoundControlSettings.cpp
+  gui/widgets/AetherWavetableVisualizer3D.cpp
+  gui/widgets/AetherWavetableVisualizer3D.h
+  gui/widgets/AetherPresetCloudBrowser.cpp
+  gui/widgets/AetherPresetCloudBrowser.h
   gui/widgets/EffectChooser.cpp
   gui/widgets/EffectChooser.h
   gui/widgets/EffectLabel.h
