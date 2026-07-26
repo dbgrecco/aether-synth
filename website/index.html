@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aether Synth - Sintetizador Híbrido Next-Gen & Motor de Áudio AI</title>
+    <meta name="description" content="Aether Synth é o sintetizador híbrido de última geração com motor granular, visualizadores 3D de tabela de ondas, IA para conversão de áudio em sintetizador e Reverb Shimmer.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="brand-logo" id="brand-logo">
+                <span class="logo-icon">⚡</span>
+                <span class="logo-text">AETHER <span class="logo-highlight">SYNTH</span></span>
+            </a>
+            <nav class="nav-links">
+                <a href="#features" id="nav-features">Funcionalidades</a>
+                <a href="#demo" id="nav-demo">Demo Interativa</a>
+                <a href="#presets" id="nav-presets">Presets</a>
+                <a href="#downloads" id="nav-downloads">Downloads</a>
+                <a href="https://github.com/dbgrecco/aether-synth" target="_blank" class="github-link" id="nav-github">
+                    <svg height="20" width="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.28.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                    GitHub
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-container">
+            <div class="hero-badge">🚀 NEXT-GEN HYBRID SYNTHESIZER ENGINE</div>
+            <h1 class="hero-title">Esculpa o Som do Futuro com <span class="gradient-text">Aether Synth</span></h1>
+            <p class="hero-subtitle">
+                Síntese Granular, Tabelas de Onda 3D Interativas, Matcher de Áudio por IA e Cadeia de Efeitos Atmosféricos Shimmer em uma arquitetura de altíssima performance.
+            </p>
+            <div class="hero-cta-group">
+                <a href="#downloads" class="btn btn-primary" id="hero-btn-download">
+                    <span>Baixar VST3 / AU / CLAP</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                </a>
+                <a href="#demo" class="btn btn-secondary" id="hero-btn-demo">
+                    <span>Testar Demo no Navegador</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                </a>
+            </div>
+
+            <!-- Visualizer Preview Card -->
+            <div class="hero-visualizer-card">
+                <div class="card-header">
+                    <div class="window-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                    </div>
+                    <div class="card-title">AETHER ENGINE v2.0 - REALTIME 3D WAVETABLE & SPECTRUM</div>
+                    <div class="live-tag">LIVE DSP</div>
+                </div>
+                <div class="canvas-wrapper">
+                    <canvas id="hero-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Poder Sonoro sem Limites</h2>
+                <p class="section-subtitle">Projetado do zero para produtores musicais, sound designers e desenvolvedores exigentes.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card" id="feature-3d-wavetable">
+                    <div class="feature-icon">🌊</div>
+                    <h3 class="feature-title">Tabelas de Onda 3D Interativas</h3>
+                    <p class="feature-desc">Visualizador tridimensional em tempo real acionado por GPU para inspeção milimétrica de tabelas de onda e morphing espectral suave.</p>
+                </div>
+
+                <div class="feature-card" id="feature-granular">
+                    <div class="feature-icon">✨</div>
+                    <h3 class="feature-title">Motor de Síntese Granular</h3>
+                    <p class="feature-desc">Transforme qualquer amostra sonora em paisagens orgânicas, pads atmosféricos e texturas complexas com controle de densidade, spray e jitter.</p>
+                </div>
+
+                <div class="feature-card" id="feature-ai-matcher">
+                    <div class="feature-icon">🤖</div>
+                    <h3 class="feature-title">AI Audio-to-Synth Matcher</h3>
+                    <p class="feature-desc">Arraste qualquer arquivo de áudio para o sintetizador e a IA extrai automaticamente os harmônicos, wavetable e envoltórias correspondentes.</p>
+                </div>
+
+                <div class="feature-card" id="feature-shimmer">
+                    <div class="feature-icon">🌌</div>
+                    <h3 class="feature-title">Efeito Shimmer Reverb</h3>
+                    <p class="feature-desc">Loop de realimentação com pitch-shifting harmônico interno para criar reverbs celestiais e caudas etéreas de alta qualidade studio-grade.</p>
+                </div>
+
+                <div class="feature-card" id="feature-cloud">
+                    <div class="feature-icon">☁️</div>
+                    <h3 class="feature-title">Preset Cloud & Marketplace</h3>
+                    <p class="feature-desc">Acesse milhares de timbres criados pela comunidade direto da interface do sintetizador com busca por tags e pré-escuta instantânea.</p>
+                </div>
+
+                <div class="feature-card" id="feature-multiformat">
+                    <div class="feature-icon">🔌</div>
+                    <h3 class="feature-title">Multi-Plataforma & Open Core</h3>
+                    <p class="feature-desc">Compatível com VST3, AU, CLAP, LV2 e Standalone no macOS, Windows e Linux, além de suporte a MPE e microafinamento Scala (SCL/KBM).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Web Audio Interactive Demo Section -->
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Experimente o Som Agora</h2>
+                <p class="section-subtitle">Toque nas teclas ou escolha um preset para ouvir a síntese em tempo real diretamente no seu navegador.</p>
+            </div>
+
+            <div class="interactive-synth-panel">
+                <div class="synth-top-bar">
+                    <div class="preset-selector-group">
+                        <label for="preset-select">Preset:</label>
+                        <select id="preset-select" class="synth-select">
+                            <option value="cyberpunk">Cyberpunk Saw Lead</option>
+                            <option value="shimmer">Ambient Shimmer Pad</option>
+                            <option value="sub">Deep Acid Sub Bass</option>
+                            <option value="granular">Granular Bell Texture</option>
+                        </select>
+                    </div>
+
+                    <div class="controls-row">
+                        <div class="control-knob">
+                            <label>Filter Cutoff</label>
+                            <input type="range" id="cutoff-slider" min="100" max="8000" value="2500">
+                        </div>
+                        <div class="control-knob">
+                            <label>Reverb Mix</label>
+                            <input type="range" id="reverb-slider" min="0" max="100" value="40">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="synth-visualizer-container">
+                    <canvas id="synth-scope-canvas"></canvas>
+                </div>
+
+                <div class="piano-keyboard" id="piano-keyboard">
+                    <button class="key white" data-note="261.63">C4</button>
+                    <button class="key black" data-note="277.18">C#4</button>
+                    <button class="key white" data-note="293.66">D4</button>
+                    <button class="key black" data-note="311.13">D#4</button>
+                    <button class="key white" data-note="329.63">E4</button>
+                    <button class="key white" data-note="349.23">F4</button>
+                    <button class="key black" data-note="369.99">F#4</button>
+                    <button class="key white" data-note="392.00">G4</button>
+                    <button class="key black" data-note="415.30">G#4</button>
+                    <button class="key white" data-note="440.00">A4</button>
+                    <button class="key black" data-note="466.16">A#4</button>
+                    <button class="key white" data-note="493.88">B4</button>
+                    <button class="key white" data-note="523.25">C5</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Downloads Section -->
+    <section class="downloads-section" id="downloads">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Baixe o Aether Synth</h2>
+                <p class="section-subtitle">Disponível gratuitamente para as principais plataformas e DAWs do mercado (Ableton Live, FL Studio, Logic Pro, Cubase, Bitwig, Reaper).</p>
+            </div>
+
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <div class="os-icon"></div>
+                    <h3>macOS</h3>
+                    <p class="os-spec">Universal Binary (Apple Silicon M1/M2/M3 & Intel)</p>
+                    <div class="format-tags">
+                        <span>VST3</span><span>AU</span><span>CLAP</span><span>Standalone</span>
+                    </div>
+                    <a href="https://github.com/dbgrecco/aether-synth/releases" target="_blank" class="btn btn-download-card">Download .dmg</a>
+                </div>
+
+                <div class="download-card highlighted">
+                    <div class="badge-recommended">POPULAR</div>
+                    <div class="os-icon">🪟</div>
+                    <h3>Windows</h3>
+                    <p class="os-spec">Windows 10 / 11 (64-bit)</p>
+                    <div class="format-tags">
+                        <span>VST3</span><span>CLAP</span><span>Standalone</span>
+                    </div>
+                    <a href="https://github.com/dbgrecco/aether-synth/releases" target="_blank" class="btn btn-primary">Download .msi</a>
+                </div>
+
+                <div class="download-card">
+                    <div class="os-icon">🐧</div>
+                    <h3>Linux</h3>
+                    <p class="os-spec">Ubuntu / Debian / Arch / Fedora (x86_64)</p>
+                    <div class="format-tags">
+                        <span>VST3</span><span>CLAP</span><span>LV2</span>
+                    </div>
+                    <a href="https://github.com/dbgrecco/aether-synth/releases" target="_blank" class="btn btn-download-card">Download .tar.gz</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="logo-icon">⚡</span> AETHER SYNTH
+                <p>© 2026 Aether Synth Team. Código-fonte aberto sob licença GPLv3.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/dbgrecco/aether-synth" target="_blank">Repositório GitHub</a>
+                <a href="https://github.com/dbgrecco/aether-synth/issues" target="_blank">Suporte & Issues</a>
+                <a href="https://surge-synthesizer.github.io" target="_blank">Projeto Surge XT Original</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
