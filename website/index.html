@@ -21,6 +21,7 @@
             <nav class="nav-links">
                 <a href="#features" id="nav-features">Funcionalidades</a>
                 <a href="#demo" id="nav-demo">Demo Interativa</a>
+                <a href="#screenshots" id="nav-screenshots">Screenshots</a>
                 <a href="#presets" id="nav-presets">Presets</a>
                 <a href="#downloads" id="nav-downloads">Downloads</a>
                 <a href="https://github.com/dbgrecco/aether-synth" target="_blank" class="github-link" id="nav-github">
@@ -34,6 +35,8 @@
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="hero-bg-glow"></div>
+        <!-- Particle Field -->
+        <canvas id="particle-canvas" aria-hidden="true"></canvas>
         <div class="container hero-container">
             <div class="hero-badge">🚀 NEXT-GEN HYBRID SYNTHESIZER ENGINE</div>
             <h1 class="hero-title">Esculpa o Som do Futuro com <span class="gradient-text">Aether Synth</span></h1>
@@ -64,6 +67,38 @@
                 </div>
                 <div class="canvas-wrapper">
                     <canvas id="hero-canvas"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section" id="stats" aria-label="Estatísticas do Aether Synth">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item" id="stat-osc">
+                    <span class="stat-number" data-target="15" data-suffix="">0</span>
+                    <span class="stat-label">Tipos de Oscilador</span>
+                </div>
+                <div class="stat-item" id="stat-partials">
+                    <span class="stat-number" data-target="512" data-suffix="">0</span>
+                    <span class="stat-label">Parciais Harmônicos</span>
+                </div>
+                <div class="stat-item" id="stat-voices">
+                    <span class="stat-number" data-target="64" data-suffix="">0</span>
+                    <span class="stat-label">Vozes Polifônicas</span>
+                </div>
+                <div class="stat-item" id="stat-fx">
+                    <span class="stat-number" data-target="27" data-suffix="+">0</span>
+                    <span class="stat-label">Módulos de Efeito</span>
+                </div>
+                <div class="stat-item" id="stat-platforms">
+                    <span class="stat-number" data-target="3" data-suffix="">0</span>
+                    <span class="stat-label">Plataformas (Win/Mac/Linux)</span>
+                </div>
+                <div class="stat-item" id="stat-formats">
+                    <span class="stat-number" data-target="5" data-suffix="">0</span>
+                    <span class="stat-label">Formatos de Plugin</span>
                 </div>
             </div>
         </div>
@@ -141,6 +176,55 @@
         </div>
     </section>
 
+    <!-- Screenshots / Gallery Section -->
+    <section class="screenshots-section" id="screenshots">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2 class="section-title">Interface em Detalhes</h2>
+                <p class="section-subtitle">Um plugin profissional e visualmente distinto — dark mode profundo, controles glowing cyan e tema Aether completo.</p>
+            </div>
+
+            <div class="screenshot-tabs" id="screenshot-tabs">
+                <button class="scr-tab active" data-tab="0" id="scr-tab-main">🎛️ Interface Principal</button>
+                <button class="scr-tab" data-tab="1" id="scr-tab-wt">🌊 Editor Wavetable 3D</button>
+                <button class="scr-tab" data-tab="2" id="scr-tab-fx">🎚️ Mod Matrix & FX</button>
+            </div>
+
+            <div class="screenshot-viewer" id="screenshot-viewer">
+                <div class="screenshot-frame active" data-frame="0">
+                    <img src="screenshot_main.png" alt="Aether Synth — Interface Principal com osciladores, filtros e efeitos" class="screenshot-img" id="scr-img-main" loading="lazy">
+                    <div class="screenshot-caption">
+                        <span class="caption-badge">AETHER SYNTH v2.0</span>
+                        <p>Interface principal com seção de osciladores wavetable, filtro ZDF, envelope ADSR e cadeia de efeitos Shimmer + OTT.</p>
+                    </div>
+                </div>
+                <div class="screenshot-frame" data-frame="1">
+                    <img src="screenshot_wavetable.png" alt="Aether Synth — Editor de Wavetable 3D com visualização espectral" class="screenshot-img" id="scr-img-wt" loading="lazy">
+                    <div class="screenshot-caption">
+                        <span class="caption-badge">3D WAVETABLE EDITOR</span>
+                        <p>Visualizador tridimensional de frames de wavetable com análise espectral em tempo real e controles de morphing.</p>
+                    </div>
+                </div>
+                <div class="screenshot-frame" data-frame="2">
+                    <img src="screenshot_modmatrix.png" alt="Aether Synth — Matriz de Modulação e Cadeia de Efeitos" class="screenshot-img" id="scr-img-fx" loading="lazy">
+                    <div class="screenshot-caption">
+                        <span class="caption-badge">MOD MATRIX & FX CHAIN</span>
+                        <p>Matriz de modulação com conexões ilimitadas entre LFOs, envelopes e MSEG — com Shimmer Reverb e OTT Dynamics.</p>
+                    </div>
+                </div>
+
+                <button class="scr-arrow scr-prev" id="scr-prev" aria-label="Anterior">&#8249;</button>
+                <button class="scr-arrow scr-next" id="scr-next" aria-label="Próximo">&#8250;</button>
+
+                <div class="screenshot-dots">
+                    <span class="scr-dot active" data-dot="0"></span>
+                    <span class="scr-dot" data-dot="1"></span>
+                    <span class="scr-dot" data-dot="2"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Web Audio Interactive Demo Section -->
     <section class="demo-section" id="demo">
         <div class="container">
@@ -149,18 +233,94 @@
                 <p class="section-subtitle">Toque nas teclas ou escolha um preset para ouvir a síntese em tempo real diretamente no seu navegador.</p>
             </div>
 
+            <!-- Hidden select kept for synth engine compatibility -->
+            <select id="preset-select" style="display:none;">
+                <option value="cyberpunk">Cyberpunk Saw Lead</option>
+                <option value="shimmer">Ambient Shimmer Pad</option>
+                <option value="sub">Deep Acid Sub Bass</option>
+                <option value="granular">Granular Bell Texture</option>
+                <option value="pluck">Crystal Pluck</option>
+                <option value="pad-dark">Dark Matter Pad</option>
+            </select>
+
+            <!-- Preset Cards -->
+            <div class="preset-cards-row" id="preset-cards-row" role="radiogroup" aria-label="Selecione um preset">
+                <div class="preset-card active" data-preset="cyberpunk" id="pcard-cyberpunk" tabindex="0" role="radio" aria-checked="true">
+                    <div class="preset-card-wave" aria-hidden="true">
+                        <svg viewBox="0 0 80 30" preserveAspectRatio="none"><polyline points="0,15 10,5 20,25 30,3 40,27 50,8 60,22 70,5 80,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="preset-card-info">
+                        <span class="preset-badge lead">LEAD</span>
+                        <h4>Cyberpunk Saw</h4>
+                        <p>Sawtooth dual OSC, filter sweep agressivo</p>
+                    </div>
+                    <button class="preset-play-btn" data-preset="cyberpunk" id="play-cyberpunk" aria-label="Tocar demo Cyberpunk Saw">▶ Demo</button>
+                </div>
+
+                <div class="preset-card" data-preset="shimmer" id="pcard-shimmer" tabindex="0" role="radio" aria-checked="false">
+                    <div class="preset-card-wave" aria-hidden="true">
+                        <svg viewBox="0 0 80 30" preserveAspectRatio="none"><path d="M0,15 Q10,8 20,15 Q30,22 40,15 Q50,8 60,15 Q70,22 80,15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <div class="preset-card-info">
+                        <span class="preset-badge pad">PAD</span>
+                        <h4>Ambient Shimmer</h4>
+                        <p>Sine+Triangle, reverb celestial, sustain longo</p>
+                    </div>
+                    <button class="preset-play-btn" data-preset="shimmer" id="play-shimmer" aria-label="Tocar demo Ambient Shimmer">▶ Demo</button>
+                </div>
+
+                <div class="preset-card" data-preset="sub" id="pcard-sub" tabindex="0" role="radio" aria-checked="false">
+                    <div class="preset-card-wave" aria-hidden="true">
+                        <svg viewBox="0 0 80 30" preserveAspectRatio="none"><path d="M0,15 L0,15 L5,15 L5,5 L15,5 L15,25 L25,25 L25,5 L35,5 L35,25 L45,25 L45,5 L55,5 L55,25 L65,25 L65,15 L80,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+                    </div>
+                    <div class="preset-card-info">
+                        <span class="preset-badge bass">BASS</span>
+                        <h4>Deep Acid Sub</h4>
+                        <p>Sawtooth sub-octave, punch imediato</p>
+                    </div>
+                    <button class="preset-play-btn" data-preset="sub" id="play-sub" aria-label="Tocar demo Deep Acid Sub">▶ Demo</button>
+                </div>
+
+                <div class="preset-card" data-preset="granular" id="pcard-granular" tabindex="0" role="radio" aria-checked="false">
+                    <div class="preset-card-wave" aria-hidden="true">
+                        <svg viewBox="0 0 80 30" preserveAspectRatio="none"><path d="M0,18 Q5,10 10,16 Q15,24 20,12 Q25,6 30,18 Q35,22 40,14 Q45,8 50,17 Q55,25 60,13 Q65,9 70,18 Q75,22 80,15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <div class="preset-card-info">
+                        <span class="preset-badge texture">TEXTURE</span>
+                        <h4>Granular Bell</h4>
+                        <p>Triangle+harmônico 3x, textura etérea</p>
+                    </div>
+                    <button class="preset-play-btn" data-preset="granular" id="play-granular" aria-label="Tocar demo Granular Bell">▶ Demo</button>
+                </div>
+
+                <div class="preset-card" data-preset="pluck" id="pcard-pluck" tabindex="0" role="radio" aria-checked="false">
+                    <div class="preset-card-wave" aria-hidden="true">
+                        <svg viewBox="0 0 80 30" preserveAspectRatio="none"><path d="M0,15 L2,4 Q4,15 8,17 Q14,20 20,16 Q35,13 50,15 Q65,16 80,15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <div class="preset-card-info">
+                        <span class="preset-badge lead">LEAD</span>
+                        <h4>Crystal Pluck</h4>
+                        <p>Ataque rápido, decay cristalino, brilho puro</p>
+                    </div>
+                    <button class="preset-play-btn" data-preset="pluck" id="play-pluck" aria-label="Tocar demo Crystal Pluck">▶ Demo</button>
+                </div>
+
+                <div class="preset-card" data-preset="pad-dark" id="pcard-pad-dark" tabindex="0" role="radio" aria-checked="false">
+                    <div class="preset-card-wave" aria-hidden="true">
+                        <svg viewBox="0 0 80 30" preserveAspectRatio="none"><path d="M0,15 Q20,5 40,18 Q60,25 80,15" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+                    </div>
+                    <div class="preset-card-info">
+                        <span class="preset-badge pad">PAD</span>
+                        <h4>Dark Matter</h4>
+                        <p>Camadas densas, evolução lenta e orgânica</p>
+                    </div>
+                    <button class="preset-play-btn" data-preset="pad-dark" id="play-pad-dark" aria-label="Tocar demo Dark Matter">▶ Demo</button>
+                </div>
+            </div>
+
             <div class="interactive-synth-panel">
                 <div class="synth-top-bar">
-                    <div class="preset-selector-group">
-                        <label for="preset-select">Preset:</label>
-                        <select id="preset-select" class="synth-select">
-                            <option value="cyberpunk">Cyberpunk Saw Lead</option>
-                            <option value="shimmer">Ambient Shimmer Pad</option>
-                            <option value="sub">Deep Acid Sub Bass</option>
-                            <option value="granular">Granular Bell Texture</option>
-                        </select>
-                    </div>
-
+                    <div class="preset-selector-group" style="font-size:0.9rem;color:var(--text-muted);">Preset ativo: <strong id="active-preset-label" style="color:var(--primary-cyan);">Cyberpunk Saw</strong></div>
                     <div class="controls-row">
                         <div class="control-knob">
                             <label>Filter Cutoff</label>

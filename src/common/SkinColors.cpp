@@ -1,23 +1,21 @@
 /*
- * Surge XT - a free and open source hybrid synthesizer,
- * built by Surge Synth Team
+ * Aether Synth - a next-gen hybrid synthesizer
+ * Fork and customization by @dbgrecco
  *
- * Learn more at https://surge-synthesizer.github.io/
+ * Based on Surge XT by Surge Synth Team
+ * https://surge-synthesizer.github.io/
  *
- * Copyright 2018-2024, various authors, as described in the GitHub
- * transaction log.
+ * Original Surge XT Copyright 2018-2024, various authors
+ * Released under GNU General Public Licence v3 (GPL-3.0-or-later)
  *
- * Surge XT is released under the GNU General Public Licence v3
- * or later (GPL-3.0-or-later). The license is found in the "LICENSE"
- * file in the root of this repository, or at
- * https://www.gnu.org/licenses/gpl-3.0.en.html
+ * === AETHER SKIN COLOR PALETTE ===
+ * Primary Cyan:   #00E5FF (0x00E5FF) - Main accent, waveforms, active controls
+ * Primary Purple: #7C4DFF (0x7C4DFF) - Selections, mod sources armed, gradients
+ * Dark BG:        #090B10           - Background panels
+ * Accent Gold:    #FFD700 (0xFFD700) - Macro controls, special highlights
  *
- * Surge was a commercial product from 2004-2018, copyright and ownership
- * held by Claes Johanson at Vember Audio during that period.
- * Claes made Surge open source in September 2018.
- *
- * All source for Surge XT is available at
- * https://github.com/surge-synthesizer/surge
+ * This file overrides the default Surge XT color scheme to apply
+ * the Aether visual identity. See also: SkinModel.cpp, SkinColors.h
  */
 #include "SkinColors.h"
 
@@ -177,69 +175,76 @@ const Surge::Skin::Color Negative("infowindow.text.modulation.negative", 0x00000
 }
 } // namespace InfoWindow
 
+// === AETHER SKIN: LFO Section ===
+// Replaces Surge XT default amber/orange (0xFF9000) with Aether Cyan (0x00E5FF)
 namespace LFO
 {
 namespace Title
 {
-const Surge::Skin::Color Text("lfo.title.text", 0xC0000000);
+const Surge::Skin::Color Text("lfo.title.text", 0xC000E5FF); // Aether Cyan faded
 }
 
 namespace Type
 {
 const Surge::Skin::Color Text("lfo.type.unselected.text", 0x000000, 0xFF),
     SelectedText("lfo.type.selected.text", 0x000000, 0xFF),
-    SelectedBackground("lfo.type.selected.background", 0xFF9815);
+    SelectedBackground("lfo.type.selected.background", 0x7C4DFF); // Aether Purple
 }
 namespace StepSeq
 {
-const Surge::Skin::Color Background("lfo.stepseq.background", 0xFF9000),
-    ColumnShadow("lfo.stepseq.column.shadow", 0x6D6D7D),
-    DragLine("lfo.stepseq.drag.line", 0xDDDDFF), Envelope("lfo.stepseq.envelope", 0x6D6D7D),
-    TriggerClick("lfo.stepseq.trigger.click", 0x325483), Wave("lfo.stepseq.wave", 0xFFFFFF);
+const Surge::Skin::Color Background("lfo.stepseq.background", 0x0D1020), // Aether Dark
+    ColumnShadow("lfo.stepseq.column.shadow", 0x1A2040),
+    DragLine("lfo.stepseq.drag.line", 0x00E5FF), // Aether Cyan
+    Envelope("lfo.stepseq.envelope", 0x4C3A8A),
+    TriggerClick("lfo.stepseq.trigger.click", 0x7C4DFF), // Aether Purple
+    Wave("lfo.stepseq.wave", 0x00E5FF); // Aether Cyan
 
 namespace Button
 {
-const Surge::Skin::Color Background("lfo.stepseq.button.background", 0xE3E3E3),
-    Border("lfo.stepseq.button.border", 0x979797), Hover("lfo.stepseq.button.hover", 0xF1BB72),
-    Arrow("lfo.stepseq.button.arrow", 0x000000, 0xFF),
-    ArrowHover("lfo.stepseq.button.arrow.hover", 0x000000, 0xFF);
+const Surge::Skin::Color Background("lfo.stepseq.button.background", 0x141828),
+    Border("lfo.stepseq.button.border", 0x2A3560),
+    Hover("lfo.stepseq.button.hover", 0x7C4DFF), // Aether Purple
+    Arrow("lfo.stepseq.button.arrow", 0xCCCCFF, 0xFF),
+    ArrowHover("lfo.stepseq.button.arrow.hover", 0x00E5FF, 0xFF); // Aether Cyan
 }
 namespace InfoWindow
 {
-const Surge::Skin::Color Background("lfo.stepseq.popup.background", 0xFFFFFF),
-    Border("lfo.stepseq.popup.border", 0x000000, 0xFF),
-    Text("lfo.stepseq.popup.text", 0x000000, 0xFF);
+const Surge::Skin::Color Background("lfo.stepseq.popup.background", 0x0D1020),
+    Border("lfo.stepseq.popup.border", 0x00E5FF, 0xFF), // Aether Cyan border
+    Text("lfo.stepseq.popup.text", 0xF0F4FF, 0xFF);
 }
 namespace Loop
 {
-const Surge::Skin::Color Marker("lfo.stepseq.loop.markers", 0x123463),
-    PrimaryStep("lfo.stepseq.loop.step.primary", 0xA9D0EF),
-    SecondaryStep("lfo.stepseq.loop.step.secondary", 0x9ABFE0),
-    OutsidePrimaryStep("lfo.stepseq.loop.outside.step.primary", 0xDEDEDE),
-    OutsideSecondaryStep("lfo.stepseq.loop.outside.step.secondary", 0xD0D0D0);
+const Surge::Skin::Color Marker("lfo.stepseq.loop.markers", 0x7C4DFF), // Aether Purple
+    PrimaryStep("lfo.stepseq.loop.step.primary", 0x002A3A),
+    SecondaryStep("lfo.stepseq.loop.step.secondary", 0x001E2A),
+    OutsidePrimaryStep("lfo.stepseq.loop.outside.step.primary", 0x1A1A2A),
+    OutsideSecondaryStep("lfo.stepseq.loop.outside.step.secondary", 0x141420);
 }
 namespace Step
 {
-const Surge::Skin::Color Fill("lfo.stepseq.step.fill", 0x123463),
-    FillDeactivated("lfo.stepseq.step.fill.deactivated", 0x2E86FF),
-    FillOutside("lfo.stepseq.step.fill.outside", 0x808080);
+const Surge::Skin::Color Fill("lfo.stepseq.step.fill", 0x00E5FF), // Aether Cyan
+    FillDeactivated("lfo.stepseq.step.fill.deactivated", 0x7C4DFF), // Aether Purple
+    FillOutside("lfo.stepseq.step.fill.outside", 0x404060);
 }
 } // namespace StepSeq
 namespace Waveform
 {
-const Surge::Skin::Color Background("lfo.waveform.background", 0xFF9000),
-    Bounds("lfo.waveform.bounds", 0xE08000), Center("lfo.waveform.center", 0xE08000),
-    Dots("lfo.waveform.dots", 0xC07000), Envelope("lfo.waveform.envelope", 0xB06000),
-    Wave("lfo.waveform.wave", 0x000000, 0xFF),
-    DeactivatedWave("lfo.waveform.wave.deactivated", 0x60000000),
-    GhostedWave("lfo.waveform.wave.ghosted", 0x60000000);
+const Surge::Skin::Color Background("lfo.waveform.background", 0x0A0E1A), // Aether Dark
+    Bounds("lfo.waveform.bounds", 0x1A2040),
+    Center("lfo.waveform.center", 0x2A3060),
+    Dots("lfo.waveform.dots", 0x004060),
+    Envelope("lfo.waveform.envelope", 0x7C4DFF), // Aether Purple
+    Wave("lfo.waveform.wave", 0x00E5FF, 0xFF),   // Aether Cyan
+    DeactivatedWave("lfo.waveform.wave.deactivated", 0x6000E5FF),
+    GhostedWave("lfo.waveform.wave.ghosted", 0x407C4DFF); // Purple ghosted
 
 namespace Ruler
 {
-const Surge::Skin::Color Text("lfo.waveform.ruler.text", 0x000000, 0xFF),
-    Ticks("lfo.waveform.ruler.ticks", 0x000000, 0xFF),
-    ExtendedTicks("lfo.waveform.ruler.ticks.extended", 0xE08000),
-    SmallTicks("lfo.waveform.ruler.ticks.small", 0xB06000);
+const Surge::Skin::Color Text("lfo.waveform.ruler.text", 0x94A3B8, 0xFF),
+    Ticks("lfo.waveform.ruler.ticks", 0x2A3060, 0xFF),
+    ExtendedTicks("lfo.waveform.ruler.ticks.extended", 0x7C4DFF), // Aether Purple
+    SmallTicks("lfo.waveform.ruler.ticks.small", 0x3A2870);
 }
 } // namespace Waveform
 } // namespace LFO
@@ -311,41 +316,48 @@ const Surge::Skin::Color Background("modbutton.macro.slider.background", 0x205DB
 }
 } // namespace ModSource
 
+// === AETHER SKIN: MSEG Editor ===
+// Curve and highlight colors changed to Aether Cyan/Purple
 namespace MSEGEditor
 {
-const Surge::Skin::Color Background("msegeditor.background", 0x111111),
-    Curve("msegeditor.curve", 0xFFFFFF), DeformCurve("msegeditor.curve.deformed", 0x808080),
-    CurveHighlight("msegeditor.curve.highlight", 0xFF9000), Panel("msegeditor.panel", 0xCDCED4),
-    Text("msegeditor.panel.text", 0x000000, 0xFF);
+const Surge::Skin::Color
+    Background("msegeditor.background", 0x080B14),              // Aether deep dark
+    Curve("msegeditor.curve", 0x00E5FF),                        // Aether Cyan main curve
+    DeformCurve("msegeditor.curve.deformed", 0x7C4DFF),         // Aether Purple deformed
+    CurveHighlight("msegeditor.curve.highlight", 0xFFFFFF),     // White on highlight
+    Panel("msegeditor.panel", 0x141828),
+    Text("msegeditor.panel.text", 0xF0F4FF, 0xFF);
 
 namespace Axis
 {
-const Surge::Skin::Color Line("msegeditor.axis.line", 0x80FFFFFF),
-    Text("msegeditor.axis.text", 0xB4B4B4),
-    SecondaryText("msegeditor.axis.text.secondary", 0xC0B4B4B4);
+const Surge::Skin::Color Line("msegeditor.axis.line", 0x4000E5FF), // Cyan axis
+    Text("msegeditor.axis.text", 0x94A3B8),
+    SecondaryText("msegeditor.axis.text.secondary", 0x6094A3B8);
 }
 namespace GradientFill
 {
-const Surge::Skin::Color StartColor("msegeditor.fill.gradient.start", 0x80FF9000),
-    EndColor("msegeditor.fill.gradient.end", 0x10FF9000);
+const Surge::Skin::Color
+    StartColor("msegeditor.fill.gradient.start", 0x5000E5FF),   // Cyan fill gradient
+    EndColor("msegeditor.fill.gradient.end", 0x087C4DFF);       // Purple fade
 }
 namespace Grid
 {
-const Surge::Skin::Color Primary("msegeditor.grid.primary", 0x80FFFFFF),
-    SecondaryHorizontal("msegeditor.grid.secondary.horizontal", 0x20FFFFFF),
-    SecondaryVertical("msegeditor.grid.secondary.vertical", 0x18FFFFFF);
+const Surge::Skin::Color Primary("msegeditor.grid.primary", 0x2A3060),
+    SecondaryHorizontal("msegeditor.grid.secondary.horizontal", 0x141A40),
+    SecondaryVertical("msegeditor.grid.secondary.vertical", 0x0E1230);
 }
 namespace Loop
 {
-const Surge::Skin::Color Marker("msegeditor.loop.marker", 0x90FF9300),
-    RegionAxis("msegeditor.loop.region.axis", 0x30FFFFFF),
-    RegionFill("msegeditor.loop.region.fill", 0x202020),
-    RegionBorder("msegeditor.loop.region.border", 0x90FF9000);
+const Surge::Skin::Color
+    Marker("msegeditor.loop.marker", 0x907C4DFF),               // Aether Purple marker
+    RegionAxis("msegeditor.loop.region.axis", 0x2000E5FF),
+    RegionFill("msegeditor.loop.region.fill", 0x0A0E20),
+    RegionBorder("msegeditor.loop.region.border", 0x707C4DFF);  // Purple region border
 }
 namespace NumberField
 {
-const Surge::Skin::Color Text("msegeditor.numberfield.text", 0x000000, 0xFF),
-    TextHover("msegeditor.numberfield.text.hover", 0x000000, 0xFF);
+const Surge::Skin::Color Text("msegeditor.numberfield.text", 0x00E5FF, 0xFF), // Cyan values
+    TextHover("msegeditor.numberfield.text.hover", 0xFFFFFF, 0xFF);
 }
 } // namespace MSEGEditor
 
@@ -355,29 +367,35 @@ const Surge::Skin::Color Text("numberfield.text", 0x000000, 0xFF),
     TextHover("numberfield.text.hover", 0x000000, 0xFF);
 }
 
+// === AETHER SKIN: Oscillator Display ===
+// Wave colors changed from amber (0xFF9000) to Aether Cyan (0x00E5FF)
+// 3D gradient uses cyan-to-purple for Aether identity
 namespace Osc
 {
 namespace Display
 {
-const Surge::Skin::Color Bounds("osc.line.bounds", 0x464646), Center("osc.line.center", 0x5A5A5A),
-    AnimatedWave("osc.waveform.animated", 0xFFFFFF), Wave("osc.waveform", 0xFF9000),
-    WaveCurrent3D("osc.waveform3d.current", 0xFF9000, 0xFF),
-    WaveStart3D("osc.waveform3d.gradient.start", 0xA06010),
-    WaveEnd3D("osc.waveform3d.gradient.end", 0xA06010),
-    WaveFillStart3D("osc.waveform3d.fill.gradient.start", 0xEB6E00, 0x32),
-    WaveFillEnd3D("osc.waveform3d.fill.gradient.end", 0xFF5A00, 0x32),
-    Dots("osc.waveform.dots", 0x404040);
+const Surge::Skin::Color Bounds("osc.line.bounds", 0x1A2040), Center("osc.line.center", 0x2A3060),
+    AnimatedWave("osc.waveform.animated", 0x00E5FF), // Aether Cyan animated
+    Wave("osc.waveform", 0x00E5FF),                 // Aether Cyan primary wave
+    WaveCurrent3D("osc.waveform3d.current", 0x00E5FF, 0xFF),  // Cyan top frame
+    WaveStart3D("osc.waveform3d.gradient.start", 0x7C4DFF),   // Purple far frames
+    WaveEnd3D("osc.waveform3d.gradient.end", 0x3A2070),
+    WaveFillStart3D("osc.waveform3d.fill.gradient.start", 0x00E5FF, 0x28), // Cyan fill
+    WaveFillEnd3D("osc.waveform3d.fill.gradient.end", 0x7C4DFF, 0x14),    // Purple fill
+    Dots("osc.waveform.dots", 0x2A3060);
 }
 namespace Filename
 {
-const Surge::Skin::Color Background("osc.wavename.background", 0xFFA010),
-    BackgroundHover("osc.wavename.background.hover", 0xFFA010),
-    Frame("osc.wavename.frame", 0xFFA010), FrameHover("osc.wavename.frame.hover", 0xFFA010),
-    Text("osc.wavename.text", 0x000000, 0xFF), TextHover("osc.wavename.text.hover", 0xFFFFFF);
+const Surge::Skin::Color Background("osc.wavename.background", 0x7C4DFF), // Aether Purple
+    BackgroundHover("osc.wavename.background.hover", 0x00E5FF),           // Cyan on hover
+    Frame("osc.wavename.frame", 0x7C4DFF),
+    FrameHover("osc.wavename.frame.hover", 0x00E5FF),
+    Text("osc.wavename.text", 0xFFFFFF, 0xFF),
+    TextHover("osc.wavename.text.hover", 0x090B10); // Dark text on hover
 }
 namespace Type
 {
-const Surge::Skin::Color Text("osc.type.text", 0xFF9E00),
+const Surge::Skin::Color Text("osc.type.text", 0x00E5FF),        // Aether Cyan
     TextHover("osc.type.text.hover", 0xFFFFFF);
 } // namespace Type
 } // namespace Osc
@@ -470,50 +488,64 @@ const Surge::Skin::Color Background("vumeter.background", 0x151515),
 
 }
 
+// === AETHER SKIN: Virtual Keyboard ===
+// Key press color changed from amber to Aether Cyan
 namespace VirtualKeyboard
 {
-const Surge::Skin::Color Text("vkb.text", 0x000000, 0xFF), Shadow("vkb.shadow", 0x40000000);
+const Surge::Skin::Color Text("vkb.text", 0x94A3B8, 0xFF), Shadow("vkb.shadow", 0x60000000);
 
 namespace Wheel
 {
-const Surge::Skin::Color Background("vkb.wheel.background", 0xFFFFFF),
-    Border("vkb.wheel.border", 0x979797), Value("vkb.wheel.value", 0xFF9000);
+const Surge::Skin::Color Background("vkb.wheel.background", 0x141828),
+    Border("vkb.wheel.border", 0x2A3560),
+    Value("vkb.wheel.value", 0x00E5FF); // Aether Cyan wheel fill
 }
 
 namespace Key
 {
-const Surge::Skin::Color Black("vkb.key.black", 0x000000, 0xFF), White("vkb.key.white", 0xFFFFFF),
-    Separator("vkb.key.separator", 0x60000000), MouseOver("vkb.key.mouse_over", 0x80FF9000),
-    Pressed("vkb.key.pressed", 0xFF9000);
+const Surge::Skin::Color
+    Black("vkb.key.black", 0x0A0E1A, 0xFF),         // Aether Dark
+    White("vkb.key.white", 0xF0F4FF),
+    Separator("vkb.key.separator", 0x401A2040),
+    MouseOver("vkb.key.mouse_over", 0x807C4DFF),    // Purple hover
+    Pressed("vkb.key.pressed", 0x00E5FF);           // Aether Cyan pressed
 }
 
 namespace OctaveJog
 {
-const Surge::Skin::Color Background("vkb.octave.background", 0x979797),
-    Arrow("vkb.octave.arrow", 0x000000, 0xFF);
+const Surge::Skin::Color Background("vkb.octave.background", 0x1A2040),
+    Arrow("vkb.octave.arrow", 0x00E5FF, 0xFF); // Aether Cyan arrows
 }
 } // namespace VirtualKeyboard
 
+// === AETHER SKIN: JUCE Widgets ===
+// Tab bar and multi-switch use Aether Purple/Cyan instead of Surge orange/amber
 namespace JuceWidgets
 {
 namespace TabbedBar
 {
-const Surge::Skin::Color ActiveTabBackground("tabbar.active.background", 0x643200),
-    InactiveTabBackground("tabbar.inactive.background", 0x1E1E1E),
-    Border("tabbar.border", 0xB46400), Text("tabbar.text", 0xFFFFFF),
-    TextHover("tabbar.text.hover", 255, 0x90, 0);
+const Surge::Skin::Color
+    ActiveTabBackground("tabbar.active.background", 0x1A0A3A),  // Deep purple-dark
+    InactiveTabBackground("tabbar.inactive.background", 0x0D1020),
+    Border("tabbar.border", 0x7C4DFF),                          // Aether Purple
+    Text("tabbar.text", 0xF0F4FF),
+    TextHover("tabbar.text.hover", 0x00, 0xE5, 0xFF);           // Aether Cyan
 }
 
 namespace TextMultiSwitch
 {
-const Surge::Skin::Color Background("multiswitch.background", 0xE3E3E3),
-    Border("multiswitch.border", 0x979797), Separator("multiswitch.separator", 0x979797),
-    DeactivatedText("multiswitch.text.deactivated", 0x979797),
-    Text("multiswitch.text", 0x000000, 0xFF), OnText("multiswitch.on.text", 0x000000, 0xFF),
-    TextHover("multiswitch.hover.text", 0x000000, 0xFF),
-    HoverOnText("multiswitch.hoveron.text", 0xFF9300),
-    HoverFill("multiswitch.hover.fill", 0xF1BB72),
-    HoverOnFill("multiswitch.hoveron.fill", 0x804900), OnFill("multiswitch.on.fill", 0xFF9A10),
+const Surge::Skin::Color
+    Background("multiswitch.background", 0x141828),
+    Border("multiswitch.border", 0x2A3560),
+    Separator("multiswitch.separator", 0x2A3560),
+    DeactivatedText("multiswitch.text.deactivated", 0x4A5A80),
+    Text("multiswitch.text", 0xC0CCEE, 0xFF),
+    OnText("multiswitch.on.text", 0x090B10, 0xFF),              // Dark on active
+    TextHover("multiswitch.hover.text", 0x00E5FF, 0xFF),        // Aether Cyan hover
+    HoverOnText("multiswitch.hoveron.text", 0x090B10),
+    HoverFill("multiswitch.hover.fill", 0x1A2A4A),
+    HoverOnFill("multiswitch.hoveron.fill", 0x00B8CC),          // Darker cyan on hover+active
+    OnFill("multiswitch.on.fill", 0x00E5FF),                    // Aether Cyan active fill
     HoverOnBorder("multiswitch.hoveron.border", 0, 0, 0, 0),
     // special: if below color is not transparent, change drawing style
     UnpressedHighlight("multiswitch.unpressed.highlight", 0, 0, 0, 0);

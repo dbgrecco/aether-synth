@@ -1,0 +1,199 @@
+<surge-skin name="Aether" author="@dbgrecco" authorURL="https://github.com/dbgrecco/aether-synth" version="2">
+    <!--
+        AETHER SKIN — Official dark theme for Aether Synth
+        Fork of Surge XT | https://github.com/dbgrecco/aether-synth
+        Palette:
+            Primary Cyan:   #00E5FF
+            Primary Purple: #7C4DFF
+            Dark BG:        #090B10
+            Mid Dark:       #0D1020
+            Accent Gold:    #FFD700
+    -->
+    <globals>
+        <window-size x="904" y="569"/>
+        <defaultimage directory="SVG/"/>
+
+        <!-- ====== AETHER COLOR TOKENS ====== -->
+        <color id="aether-cyan"         value="#00E5FF"/>
+        <color id="aether-cyan-dim"     value="#00E5FF80"/>
+        <color id="aether-cyan-subtle"  value="#00E5FF28"/>
+        <color id="aether-cyan-faint"   value="#00E5FF12"/>
+        <color id="aether-purple"       value="#7C4DFF"/>
+        <color id="aether-purple-dim"   value="#7C4DFF80"/>
+        <color id="aether-purple-subtle" value="#7C4DFF28"/>
+        <color id="aether-gold"         value="#FFD700"/>
+        <color id="aether-dark"         value="#090B10"/>
+        <color id="aether-mid"          value="#0D1020"/>
+        <color id="aether-deep"         value="#141828"/>
+        <color id="aether-border"       value="#2A3560"/>
+        <color id="aether-text"         value="#F0F4FF"/>
+        <color id="aether-muted"        value="#94A3B8"/>
+        <color id="empty"               value="#00000000"/>
+        <color id="white"               value="#FFFFFF"/>
+        <color id="black"               value="#000000"/>
+
+        <!-- ====== LFO SECTION ====== -->
+        <color id="lfo.title.text"                    value="#00E5FFC0"/>
+
+        <color id="lfo.waveform.background"           value="aether-dark"/>
+        <color id="lfo.waveform.dots"                 value="aether-border"/>
+        <color id="lfo.waveform.ruler.text"           value="aether-muted"/>
+        <color id="lfo.waveform.ruler.ticks"          value="aether-mid"/>
+        <color id="lfo.waveform.ruler.ticks.small"    value="aether-border"/>
+        <color id="lfo.waveform.ruler.ticks.extended" value="aether-purple"/>
+        <color id="lfo.waveform.bounds"               value="aether-mid"/>
+        <color id="lfo.waveform.center"               value="aether-border"/>
+        <color id="lfo.waveform.envelope"             value="aether-purple-dim"/>
+        <color id="lfo.waveform.wave"                 value="aether-cyan"/>
+        <color id="lfo.waveform.wave.deactivated"     value="aether-cyan-dim"/>
+        <color id="lfo.waveform.wave.ghosted"         value="aether-purple-dim"/>
+
+        <color id="lfo.type.selected.background"      value="aether-purple"/>
+        <color id="lfo.type.selected.text"            value="white"/>
+        <color id="lfo.type.unselected.text"          value="aether-muted"/>
+
+        <color id="lfo.stepseq.background"            value="aether-mid"/>
+        <color id="lfo.stepseq.column.shadow"         value="aether-dark"/>
+        <color id="lfo.stepseq.drag.line"             value="aether-cyan"/>
+        <color id="lfo.stepseq.envelope"              value="aether-purple"/>
+        <color id="lfo.stepseq.trigger.click"         value="aether-purple"/>
+        <color id="lfo.stepseq.wave"                  value="aether-cyan"/>
+
+        <color id="lfo.stepseq.button.background"     value="aether-deep"/>
+        <color id="lfo.stepseq.button.border"         value="aether-border"/>
+        <color id="lfo.stepseq.button.hover"          value="aether-purple"/>
+        <color id="lfo.stepseq.button.arrow"          value="aether-text"/>
+        <color id="lfo.stepseq.button.arrow.hover"    value="aether-cyan"/>
+
+        <color id="lfo.stepseq.popup.background"      value="aether-mid"/>
+        <color id="lfo.stepseq.popup.border"          value="aether-cyan"/>
+        <color id="lfo.stepseq.popup.text"            value="aether-text"/>
+
+        <color id="lfo.stepseq.loop.markers"          value="aether-purple"/>
+        <color id="lfo.stepseq.loop.step.primary"     value="#002A3A"/>
+        <color id="lfo.stepseq.loop.step.secondary"   value="#001E2A"/>
+        <color id="lfo.stepseq.loop.outside.step.primary"   value="#1A1A2A"/>
+        <color id="lfo.stepseq.loop.outside.step.secondary" value="#141420"/>
+        <color id="lfo.stepseq.step.fill"             value="aether-cyan"/>
+        <color id="lfo.stepseq.step.fill.deactivated" value="aether-purple"/>
+        <color id="lfo.stepseq.step.fill.outside"     value="#404060"/>
+
+        <!-- ====== OSCILLATOR DISPLAY ====== -->
+        <color id="osc.line.bounds"                    value="aether-mid"/>
+        <color id="osc.line.center"                    value="aether-border"/>
+        <color id="osc.waveform.animated"              value="aether-cyan"/>
+        <color id="osc.waveform"                       value="aether-cyan"/>
+        <color id="osc.waveform3d.current"             value="aether-cyan"/>
+        <color id="osc.waveform3d.gradient.start"      value="aether-purple"/>
+        <color id="osc.waveform3d.gradient.end"        value="#3A2070"/>
+        <color id="osc.waveform3d.fill.gradient.start" value="#00E5FF28"/>
+        <color id="osc.waveform3d.fill.gradient.end"   value="#7C4DFF14"/>
+        <color id="osc.waveform.dots"                  value="aether-border"/>
+        <color id="osc.wavename.background"            value="aether-purple"/>
+        <color id="osc.wavename.background.hover"      value="aether-cyan"/>
+        <color id="osc.wavename.frame"                 value="aether-purple"/>
+        <color id="osc.wavename.frame.hover"           value="aether-cyan"/>
+        <color id="osc.wavename.text"                  value="white"/>
+        <color id="osc.wavename.text.hover"            value="aether-dark"/>
+        <color id="osc.type.text"                      value="aether-cyan"/>
+        <color id="osc.type.text.hover"                value="white"/>
+
+        <!-- ====== MSEG EDITOR ====== -->
+        <color id="msegeditor.background"              value="#080B14"/>
+        <color id="msegeditor.curve"                   value="aether-cyan"/>
+        <color id="msegeditor.curve.deformed"          value="aether-purple"/>
+        <color id="msegeditor.curve.highlight"         value="white"/>
+        <color id="msegeditor.panel"                   value="aether-deep"/>
+        <color id="msegeditor.panel.text"              value="aether-text"/>
+        <color id="msegeditor.axis.line"               value="#4000E5FF"/>
+        <color id="msegeditor.axis.text"               value="aether-muted"/>
+        <color id="msegeditor.axis.text.secondary"     value="#6094A3B8"/>
+        <color id="msegeditor.fill.gradient.start"     value="#5000E5FF"/>
+        <color id="msegeditor.fill.gradient.end"       value="#087C4DFF"/>
+        <color id="msegeditor.grid.primary"            value="#2A3060"/>
+        <color id="msegeditor.grid.secondary.horizontal" value="#141A40"/>
+        <color id="msegeditor.grid.secondary.vertical"   value="#0E1230"/>
+        <color id="msegeditor.loop.marker"             value="#907C4DFF"/>
+        <color id="msegeditor.loop.region.axis"        value="#2000E5FF"/>
+        <color id="msegeditor.loop.region.fill"        value="#0A0E20"/>
+        <color id="msegeditor.loop.region.border"      value="#707C4DFF"/>
+        <color id="msegeditor.numberfield.text"        value="aether-cyan"/>
+        <color id="msegeditor.numberfield.text.hover"  value="white"/>
+
+        <!-- ====== MODULATION SOURCES ====== -->
+        <color id="modbutton.unused.fill"              value="#0A0E1A"/>
+        <color id="modbutton.unused.frame"             value="aether-border"/>
+        <color id="modbutton.unused.frame.hover"       value="aether-cyan"/>
+        <color id="modbutton.unused.text"              value="aether-muted"/>
+        <color id="modbutton.unused.text.hover"        value="aether-cyan"/>
+
+        <color id="modbutton.used.fill"                value="#0A0E1A"/>
+        <color id="modbutton.used.frame"               value="aether-cyan"/>
+        <color id="modbutton.used.frame.hover"         value="white"/>
+        <color id="modbutton.used.text"                value="aether-cyan"/>
+        <color id="modbutton.used.text.hover"          value="white"/>
+
+        <color id="modbutton.selected.fill"            value="aether-purple"/>
+        <color id="modbutton.selected.frame"           value="aether-cyan"/>
+        <color id="modbutton.selected.frame.hover"     value="white"/>
+        <color id="modbutton.selected.text"            value="white"/>
+        <color id="modbutton.selected.text.hover"      value="white"/>
+
+        <color id="modbutton.armed.fill"               value="#1A3A0A"/>
+        <color id="modbutton.armed.frame"              value="#6DFF2B"/>
+        <color id="modbutton.armed.frame.hover"        value="white"/>
+        <color id="modbutton.armed.text"               value="#6DFF2B"/>
+        <color id="modbutton.armed.text.hover"         value="white"/>
+
+        <color id="modbutton.macro.slider.background"  value="aether-border"/>
+        <color id="modbutton.macro.slider.border"      value="aether-mid"/>
+        <color id="modbutton.macro.slider.fill"        value="aether-cyan"/>
+        <color id="modbutton.macro.slider.currentvalue" value="aether-gold"/>
+
+        <!-- ====== TAB BAR & MULTISWITCH ====== -->
+        <color id="tabbar.active.background"           value="#1A0A3A"/>
+        <color id="tabbar.inactive.background"         value="aether-mid"/>
+        <color id="tabbar.border"                      value="aether-purple"/>
+        <color id="tabbar.text"                        value="aether-text"/>
+        <color id="tabbar.text.hover"                  value="aether-cyan"/>
+
+        <color id="multiswitch.background"             value="aether-deep"/>
+        <color id="multiswitch.border"                 value="aether-border"/>
+        <color id="multiswitch.separator"              value="aether-border"/>
+        <color id="multiswitch.text"                   value="aether-muted"/>
+        <color id="multiswitch.on.text"                value="aether-dark"/>
+        <color id="multiswitch.hover.text"             value="aether-cyan"/>
+        <color id="multiswitch.hoveron.text"           value="aether-dark"/>
+        <color id="multiswitch.hover.fill"             value="#1A2A4A"/>
+        <color id="multiswitch.hoveron.fill"           value="#00B8CC"/>
+        <color id="multiswitch.on.fill"                value="aether-cyan"/>
+        <color id="multiswitch.hoveron.border"         value="empty"/>
+        <color id="multiswitch.unpressed.highlight"    value="empty"/>
+
+        <!-- ====== VIRTUAL KEYBOARD ====== -->
+        <color id="vkb.key.black"                      value="aether-dark"/>
+        <color id="vkb.key.white"                      value="#F0F4FF"/>
+        <color id="vkb.key.separator"                  value="#401A2040"/>
+        <color id="vkb.key.mouse_over"                 value="#807C4DFF"/>
+        <color id="vkb.key.pressed"                    value="aether-cyan"/>
+        <color id="vkb.wheel.background"               value="aether-deep"/>
+        <color id="vkb.wheel.border"                   value="aether-border"/>
+        <color id="vkb.wheel.value"                    value="aether-cyan"/>
+        <color id="vkb.text"                           value="aether-muted"/>
+        <color id="vkb.shadow"                         value="#60000000"/>
+        <color id="vkb.octave.background"              value="aether-border"/>
+        <color id="vkb.octave.arrow"                   value="aether-cyan"/>
+
+        <!-- ====== POPUP MENUS ====== -->
+        <color id="popupmenu.background"               value="aether-mid"/>
+        <color id="popupmenu.background.highlight"     value="aether-deep"/>
+        <color id="popupmenu.text"                     value="aether-text"/>
+        <color id="popupmenu.text.header"              value="aether-cyan"/>
+        <color id="popupmenu.text.highlight"           value="aether-cyan"/>
+
+        <!-- ====== VU METER ====== -->
+        <color id="vumeter.background"                 value="aether-dark"/>
+        <color id="vumeter.border"                     value="aether-border"/>
+        <color id="vumeter.unavailabletext"            value="aether-purple"/>
+    </globals>
+</surge-skin>
