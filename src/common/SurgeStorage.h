@@ -426,6 +426,7 @@ enum fx_type
     fxt_bonsai,
     fxt_audio_input,
     fxt_floaty_delay,
+    fxt_nebula_melt,
 
     n_fx_types,
 };
@@ -460,7 +461,8 @@ const char fx_type_names[n_fx_types][32] = {"Off",
                                             "Spring Reverb",
                                             "Bonsai",
                                             "Audio Input",
-                                            "Floaty Delay"};
+                                            "Floaty Delay",
+                                            "Nebula Melt"};
 
 const char fx_type_shortnames[n_fx_types][16] = {
     "Off",         "Delay",      "Reverb 1",      "Phaser",        "Rotary",     "Distortion",
@@ -468,12 +470,12 @@ const char fx_type_shortnames[n_fx_types][16] = {
     "Flanger",     "Ring Mod",   "Airwindows",    "Neuron",        "Graphic EQ", "Resonator",
     "CHOW",        "Exciter",    "Ensemble",      "Combulator",    "Nimbus",     "Tape",
     "Treemonster", "Waveshaper", "Mid-Side Tool", "Spring Reverb", "Bonsai",     "Audio In",
-    "Floaty Delay"};
+    "Floaty Delay","Nebula Melt"};
 
 const char fx_type_acronyms[n_fx_types][8] = {
     "OFF", "DLY",  "RV1", "PH", "ROT", "DIST", "EQ",  "FRQ", "DYN", "CH",  "VOC",
     "RV2", "FL",   "RM",  "AW", "NEU", "GEQ",  "RES", "CHW", "XCT", "ENS", "CMB",
-    "NIM", "TAPE", "TM",  "WS", "M-S", "SRV",  "BON", "IN",  "FDL"};
+    "NIM", "TAPE", "TM",  "WS", "M-S", "SRV",  "BON", "IN",  "FDL", "MELT"};
 
 enum fx_bypass
 {

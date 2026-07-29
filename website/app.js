@@ -264,7 +264,7 @@ function initWebAudioSynth() {
             
             mainFilter = audioCtx.createBiquadFilter();
             mainFilter.type = 'lowpass';
-            mainFilter.frequency.value = parseFloat(cutoffSlider.value);
+            mainFilter.frequency.value = parseFloat(cutoffSlider ? cutoffSlider.value : 2500);
 
             analyser = audioCtx.createAnalyser();
             analyser.fftSize = 2048;
@@ -284,6 +284,18 @@ function initWebAudioSynth() {
             if (mainFilter) {
                 mainFilter.frequency.setTargetAtTime(parseFloat(e.target.value), audioCtx.currentTime, 0.05);
             }
+        });
+    }
+
+    if (nebulaDriftSlider) {
+        nebulaDriftSlider.addEventListener('input', (e) => {
+            nebulaDriftAmount = parseFloat(e.target.value) / 100.0;
+        });
+    }
+
+    if (nebulaSatSlider) {
+        nebulaSatSlider.addEventListener('input', (e) => {
+            nebulaSatAmount = parseFloat(e.target.value) / 100.0;
         });
     }
 

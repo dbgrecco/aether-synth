@@ -54,6 +54,7 @@
 #include "DebugHelpers.h"
 #include "AudioInputEffect.h"
 #include "FloatyDelayEffect.h"
+#include "NebulaMeltEffect.h"
 
 using namespace std;
 
@@ -127,6 +128,8 @@ Effect *spawn_effect(int id, SurgeStorage *storage, FxStorage *fxdata, pdata *pd
         return new AudioInputEffect(storage, fxdata, pd);
     case fxt_floaty_delay:
         return new FloatyDelayEffect(storage, fxdata, pd);
+    case fxt_nebula_melt:
+        return new NebulaMeltEffect(storage, fxdata, pd);
 
     default:
         return 0;
